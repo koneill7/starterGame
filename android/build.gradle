@@ -1,4 +1,5 @@
 android {
+    ndkVersion "21.4.7075529"
     buildToolsVersion "30.0.3"
     compileSdkVersion 30
     sourceSets {
@@ -18,7 +19,7 @@ android {
     }
     defaultConfig {
         applicationId "com.mygdx.game"
-        minSdkVersion 14
+        minSdkVersion 30
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
