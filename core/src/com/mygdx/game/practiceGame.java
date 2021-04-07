@@ -8,7 +8,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class practiceGame extends ApplicationAdapter {
@@ -33,8 +36,21 @@ public class practiceGame extends ApplicationAdapter {
 		orthographicCamera = new OrthographicCamera();
 		orthographicCamera.setToOrtho(false, Gdx.graphics.getWidth()/RESIZE, Gdx.graphics.getHeight()/RESIZE);
 		world = new World(new Vector2(VELX, VELY ), false);
+		System.out.println(world);
 		player = new Player(world);
 		box2DDebugRenderer = new Box2DDebugRenderer();
+	}
+
+	public Body makePlatform(World world){
+		//use this method for now, try tiles for more complex map
+		BodyDef platform = new BodyDef();
+		platform.position.set(new Vector2(0.0F, 0.0F));
+		platform.type = BodyDef.BodyType.StaticBody;
+		Body platBody = world.createBody(platform);
+		PolygonShape platShape = new PolygonShape();
+		platShape.setAsBox(20.0F, 3.0F);
+		platBody.setUserData();
+		platBody.createFixture(platShape, 0.25F);
 	}
 
 	@Override
