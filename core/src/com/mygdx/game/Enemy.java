@@ -3,16 +3,14 @@ package com.mygdx.game;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-public class Player {
+public class Enemy {
     Body body;
     World newWorld;
     int health = 100;
-    public Player(World world){
-        newWorld = world;
-        createBox(10f, 20f);
+    public Enemy(){
+        createBox(20f,30f); //what to set this to?
     }
     private void createBox(float x, float y){
         BodyDef bodyDef = new BodyDef();
@@ -26,11 +24,10 @@ public class Player {
         body = newWorld.createBody(bodyDef);
         body.createFixture(fixtureDef).setUserData(this);
     }
-    public Body getBody(){
-        return body;
+    public void attack(Player player){
+        player.injured();
     }
-
-    public void injured(){
-        health -= 10;
+    public void injured(int damage){
+        health  -= damage;
     }
 }

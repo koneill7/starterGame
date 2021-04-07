@@ -19,8 +19,8 @@ public class practiceGame extends ApplicationAdapter {
 	private static final float TIME = 1/100f;//adjust?
 	private static final int VEL_ITER = 6;
 	private static final int POS_ITER = 2;
-	//SpriteBatch batch;
-	//Texture img;
+	SpriteBatch batch;
+	Texture img;
 	OrthographicCamera orthographicCamera;
 	World world;
 	Player player;
@@ -29,7 +29,7 @@ public class practiceGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		//batch = new SpriteBatch();
-		//img = new Texture("badlogic.jpg");
+		//img = new Texture("player.png");
 		orthographicCamera = new OrthographicCamera();
 		orthographicCamera.setToOrtho(false, Gdx.graphics.getWidth()/RESIZE, Gdx.graphics.getHeight()/RESIZE);
 		world = new World(new Vector2(VELX, VELY ), false);
