@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+
 public class practiceGame extends ApplicationAdapter {
 	private static final float RESIZE = 2.0f;
 	public static final float PPM = 32f;
@@ -39,9 +40,10 @@ public class practiceGame extends ApplicationAdapter {
 		System.out.println(world);
 		player = new Player(world);
 		box2DDebugRenderer = new Box2DDebugRenderer();
+		makePlatform();
 	}
 
-	public Body makePlatform(World world){
+	public Body makePlatform(){
 		//use this method for now, try tiles for more complex map
 		BodyDef platform = new BodyDef();
 		platform.position.set(new Vector2(0.0F, 0.0F));
@@ -49,8 +51,11 @@ public class practiceGame extends ApplicationAdapter {
 		Body platBody = world.createBody(platform);
 		PolygonShape platShape = new PolygonShape();
 		platShape.setAsBox(20.0F, 3.0F);
-		platBody.setUserData();
 		platBody.createFixture(platShape, 0.25F);
+		platBody.setUserData(new GroundUserData(40.0F, 6.0F));
+		platShape.dispose();
+		return platBody;
+		
 	}
 
 	@Override
